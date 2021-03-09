@@ -1,0 +1,91 @@
+<section class="section-header-page section-header-page-about" style="background-image: url(/assets/img/sections/about-bg.png);">
+    <div class="container">
+        <h1 class="h1__title-page" [innerHTML]="'PAGE.ABOUT.TITLE' | translate"></h1>
+    </div>
+</section>
+
+<section class="section-text-second">
+    <div class="container">
+        <div class="section-text-second-block">
+            <span class="h2__title-section" [innerHTML]="'PAGE.ABOUT.SECTION_1.TITLE' | translate"></span>
+            <span class="span__line-section"></span>
+            <p class="p__text-section" [innerHTML]="'PAGE.ABOUT.SECTION_1.TEXT' | translate"></p>
+        </div>
+        <div class="section-text-second-block">
+            <div class="section-text-second-block-img" style="background-image: url(/assets/img/sections/about-img.png);"></div>
+        </div>
+    </div>
+</section>
+
+
+<section class="section-infoblock section-infoblock-filled">
+    <div class="container">
+        <div class="section-infoblock-text">
+            <span class="h2__title-section" [innerHTML]="'PAGE.ABOUT.SECTION_2.TITLE' | translate"></span>
+            <span class="span__line-section"></span>
+            <p class="p__text-section" [innerHTML]="'PAGE.ABOUT.SECTION_2.SUBTITLE' | translate"></p>
+        </div>
+        <div class="section-infoblock-grid">
+            <div class="section-infoblock-grid-item">
+                <span class="section-infoblock-grid-item-title icon icon__secure" [innerHTML]="'PAGE.ABOUT.SECTION_2.LIST.TITLE_1' | translate"></span>
+                <p class="section-infoblock-grid-item-text" [innerHTML]="'PAGE.ABOUT.SECTION_2.LIST.TEXT_1' | translate"></p>
+            </div>
+            <div class="section-infoblock-grid-item">
+                <span class="section-infoblock-grid-item-title icon icon__rocket-2" [innerHTML]="'PAGE.ABOUT.SECTION_2.LIST.TITLE_2' | translate"></span>
+                <p class="section-infoblock-grid-item-text" [innerHTML]="'PAGE.ABOUT.SECTION_2.LIST.TEXT_2' | translate"></p>
+            </div>
+            <div class="section-infoblock-grid-item">
+                <span class="section-infoblock-grid-item-title icon icon__hand-coin" [innerHTML]="'PAGE.ABOUT.SECTION_2.LIST.TITLE_3' | translate"></span>
+                <p class="section-infoblock-grid-item-text" [innerHTML]="'PAGE.ABOUT.SECTION_2.LIST.TEXT_3' | translate"></p>
+            </div>
+            <div class="section-infoblock-grid-item">
+                <span class="section-infoblock-grid-item-title icon icon__phone-coin" [innerHTML]="'PAGE.ABOUT.SECTION_2.LIST.TITLE_4' | translate"></span>
+                <p class="section-infoblock-grid-item-text" [innerHTML]="'PAGE.ABOUT.SECTION_2.LIST.TEXT_4' | translate"></p>
+            </div>
+            <div class="section-infoblock-grid-item">
+                <span class="section-infoblock-grid-item-title icon icon__big-data" [innerHTML]="'PAGE.ABOUT.SECTION_2.LIST.TITLE_5' | translate"></span>
+                <p class="section-infoblock-grid-item-text" [innerHTML]="'PAGE.ABOUT.SECTION_2.LIST.TEXT_5' | translate"></p>
+            </div>
+            <div class="section-infoblock-grid-item">
+                <span class="section-infoblock-grid-item-title icon icon__community" [innerHTML]="'PAGE.ABOUT.SECTION_2.LIST.TITLE_6' | translate"></span>
+                <p class="section-infoblock-grid-item-text" [innerHTML]="'PAGE.ABOUT.SECTION_2.LIST.TEXT_6' | translate"></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section-infoblock">
+    <div class="container">
+        <div class="section-infoblock-text">
+            <span class="h2__title-section" [innerHTML]="'PAGE.ABOUT.TECHNOLOGY.TITLE' | translate"></span>
+            <span class="span__line-section"></span>
+            <p class="p__text-section" [innerHTML]="'PAGE.ABOUT.TECHNOLOGY.SUBTITLE' | translate"></p>
+        </div>
+        <div class="section-infoblock-items">
+            <div class="section-infoblock-item">
+                <span class="span__title-section" [innerHTML]="'PAGE.ABOUT.TECHNOLOGY.TEXT_1' | translate"></span>
+                <a href="https://insight.ducatus.io/#/DUC/mainnet/home" target="_blank" class="section-infoblock-item-link icon icon__blockchain"></a>
+            </div>
+            <div class="section-infoblock-item">
+                <span class="span__title-section" [innerHTML]="'PAGE.ABOUT.TECHNOLOGY.TEXT_2' | translate"></span>
+                <a href="https://github.com/DUCATUS-revival/ducatuscoin-core" target="_blank" class="section-infoblock-item-link icon icon__source-code"></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section-infoblock">
+    <div class="container">
+        <div class="section-infoblock-text">
+            <span class="h2__title-section" [innerHTML]="'PAGE.ABOUT.MILESTONES.TITLE' | translate"></span>
+            <span class="span__line-section"></span>
+        </div>
+        <div class="section-infoblock-items-table">
+            <div class="section-infoblock-item-cell" *ngFor="let item of milestinesData">
+                <span [attr.data-year]="'PAGE.ABOUT.MILESTONES.LIST.YEAR_' + item | translate" class="section-infoblock-item-cell-text" [innerHTML]="'PAGE.ABOUT.MILESTONES.LIST.TEXT_' + item | translate"></span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mb-130"></section>
