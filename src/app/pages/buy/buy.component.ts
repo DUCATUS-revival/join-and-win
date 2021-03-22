@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
+import { HttpClient } from '@angular/common/http';
 
 import { BuyService } from '../../service/buy/buy.service';
 import { Lottery, Rates } from 'src/app/interfaces';
@@ -196,7 +197,8 @@ export class BuyComponent implements OnInit, OnDestroy {
     private sanitizer: DomSanitizer,
     private translate: TranslateService,
     private googleAnalyticsService: GoogleAnalyticsService,
-    protected route: ActivatedRoute
+    protected route: ActivatedRoute,
+    private http: HttpClient,
   ) {
     this.BuyGroup = this.formBuilder.group({
       currency: ['eth', Validators.compose([Validators.required])],
@@ -229,6 +231,12 @@ export class BuyComponent implements OnInit, OnDestroy {
     window['jQuery']['cookie']('termsBuy')
       ? this.acceptModalTerms()
       : (this.modal = true);
+    this.http
+      .get('https://rates.ducatuscoins.com/api/v1/rates/')
+      .toPromise()
+      .then((res: any) => {
+        this.moneyPrice.usd.price = res.DUC.USD;
+      });
   }
 
   ngOnDestroy() {
@@ -368,7 +376,7 @@ export class BuyComponent implements OnInit, OnDestroy {
           (
             (this.BuyGroup.value.amount / this.ducToUsd) *
             this.rates.DUC[this.currencyData[currency].shortName.toUpperCase()]
-          ).toFixed(this.currencyData[currency].decimals)
+          ).toFixed(this.currencyData[currency].decimals),
         ) + 0.00005;
 
       this.currencyData[currency].amount = (
@@ -385,7 +393,7 @@ export class BuyComponent implements OnInit, OnDestroy {
         'lottery',
         'address',
         'generate',
-        10
+        10,
       );
 
       this.loadingQr = false;
