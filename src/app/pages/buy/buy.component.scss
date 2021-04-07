@@ -1,5 +1,5 @@
-@import "../../../scss/vars";
-@import "../../../scss/mixins";
+@import '../../../scss/vars';
+@import '../../../scss/mixins';
 
 .lotery-form {
   margin-top: 40px;
@@ -10,6 +10,12 @@
 
   @include b(500) {
     padding: 0 15px;
+  }
+  &__err {
+    color: red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 .lotery-galery {
@@ -40,7 +46,7 @@
       padding: 0 15px;
       &:after {
         min-width: 15px;
-        content: "";
+        content: '';
         display: block;
         min-height: 100%;
       }
