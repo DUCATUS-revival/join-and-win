@@ -31,12 +31,12 @@
             <div class="lottery-hash-title">#GOLDRUSH2021</div>
             <div class="lottery-title">
               <span class="yellow">{{
-                "PAGE.BUY.GOLD.TITLE1" | translate
+                'PAGE.BUY.GOLD.TITLE1' | translate
               }}</span>
-              {{ "PAGE.BUY.GOLD.TITLE2" | translate }}
+              {{ 'PAGE.BUY.GOLD.TITLE2' | translate }}
             </div>
             <div class="lottery-subtitle">
-              {{ "PAGE.BUY.GOLD.SUBTITLE1" | translate }}
+              {{ 'PAGE.BUY.GOLD.SUBTITLE1' | translate }}
             </div>
 
             <div class="lottery-item">
@@ -47,7 +47,7 @@
                 />
               </div>
               <div class="lottery-item-text">
-                {{ "PAGE.BUY.GOLD.LIST1.TEXT1" | translate }}
+                {{ 'PAGE.BUY.GOLD.LIST1.TEXT1' | translate }}
               </div>
             </div>
             <div class="lottery-item">
@@ -58,7 +58,7 @@
                 />
               </div>
               <div class="lottery-item-text">
-                {{ "PAGE.BUY.GOLD.LIST1.TEXT2" | translate }}
+                {{ 'PAGE.BUY.GOLD.LIST1.TEXT2' | translate }}
               </div>
             </div>
             <div class="lottery-item">
@@ -69,7 +69,7 @@
                 />
               </div>
               <div class="lottery-item-text">
-                {{ "PAGE.BUY.GOLD.LIST1.TEXT3" | translate }}
+                {{ 'PAGE.BUY.GOLD.LIST1.TEXT3' | translate }}
               </div>
             </div>
           </div>
@@ -79,27 +79,27 @@
         <div class="lottery">
           <div class="lottery-wrap">
             <div class="lottery-list-title">
-              {{ "PAGE.BUY.GOLD.TITLE3" | translate }}
+              {{ 'PAGE.BUY.GOLD.TITLE3' | translate }}
             </div>
             <ul class="lottery-list">
               <li>
-                {{ "PAGE.BUY.GOLD.LIST2.TEXT1" | translate }}
+                {{ 'PAGE.BUY.GOLD.LIST2.TEXT1' | translate }}
               </li>
               <li>
-                {{ "PAGE.BUY.GOLD.LIST2.TEXT2" | translate }}
+                {{ 'PAGE.BUY.GOLD.LIST2.TEXT2' | translate }}
               </li>
               <li>
-                {{ "PAGE.BUY.GOLD.LIST2.TEXT3" | translate }}
+                {{ 'PAGE.BUY.GOLD.LIST2.TEXT3' | translate }}
               </li>
               <li>
-                {{ "PAGE.BUY.GOLD.LIST2.TEXT4" | translate }}
+                {{ 'PAGE.BUY.GOLD.LIST2.TEXT4' | translate }}
               </li>
               <li>
-                {{ "PAGE.BUY.GOLD.LIST2.TEXT5" | translate }}
+                {{ 'PAGE.BUY.GOLD.LIST2.TEXT5' | translate }}
               </li>
             </ul>
             <div class="lottery-list-subtitle">
-              {{ "PAGE.BUY.GOLD.SUBTITLE2" | translate }}
+              {{ 'PAGE.BUY.GOLD.SUBTITLE2' | translate }}
             </div>
           </div>
         </div>
@@ -179,9 +179,9 @@
               </div>
             </div>
           </div>
-
+          <!-- BuyGroup.controls['currency'].value === 'card' -->
           <div
-            *ngIf="BuyGroup.controls['currency'].value === 'card'"
+            *ngIf="false"
             class="group group-input group-block"
             style="margin: 14px -37px; background: none"
           >
@@ -212,13 +212,16 @@
             </div>
           </div>
 
-          <div class="group group-input group-block">
+          <div
+            class="group group-input group-block"
+            *ngIf="BuyGroup.controls['currency'].value !== 'card'"
+          >
             <label
               class="group-radio-label group-radio-label--white"
               for="amount-100"
             >
               {{
-                "PAGE.BUY.FORM.RADIO.PRICE"
+                'PAGE.BUY.FORM.RADIO.PRICE'
                   | translate
                     : {
                         curName: moneyPrice[selectedMoney].name,
@@ -227,9 +230,9 @@
               }}
               <br />
               <span class="ducatus-info-text">
-                {{ "PAGE.BUY.FORM.RADIO.TEXT" | translate }}
+                {{ 'PAGE.BUY.FORM.RADIO.TEXT' | translate }}
                 <span class="ducatus-info-link" (click)="modalInfo = true">{{
-                  "PAGE.BUY.FORM.RADIO.LINK" | translate
+                  'PAGE.BUY.FORM.RADIO.LINK' | translate
                 }}</span>
               </span>
             </label>
@@ -268,10 +271,20 @@
           </div>
         </div>
 
-        <div class="lotery-form-wrapper">
+        <div
+          class="lotery-form__err"
+          *ngIf="BuyGroup.controls['currency'].value === 'card'"
+        >
+          Currently unavailable
+        </div>
+
+        <div
+          class="lotery-form-wrapper"
+          *ngIf="BuyGroup.controls['currency'].value !== 'card'"
+        >
           <div class="group group-input">
             <label for="email">{{
-              "PAGE.BUY.FORM.EMAIL.TEXT" | translate
+              'PAGE.BUY.FORM.EMAIL.TEXT' | translate
             }}</label>
             <input
               id="email"
@@ -293,10 +306,10 @@
               class="group-wrap qr-address"
             >
               <label
-                >{{ "PAGE.BUY.FORM.RESULT.TEXT_1" | translate }}
+                >{{ 'PAGE.BUY.FORM.RESULT.TEXT_1' | translate }}
                 {{ currencyData[BuyGroup.value.currency].amount }}
                 {{ currencyData[BuyGroup.value.currency].name }}
-                {{ "PAGE.BUY.FORM.RESULT.TEXT_2" | translate }}
+                {{ 'PAGE.BUY.FORM.RESULT.TEXT_2' | translate }}
               </label>
               <p class="input input-accent">
                 <span *ngIf="!loadingQr && buttonSubmit">{{
@@ -333,11 +346,14 @@
               class="group-wrap qr-textCode"
             >
               <label style="margin-bottom: 0">{{
-                "PAGE.BUY.FORM.RESULT.QR.TEXT" | translate
+                'PAGE.BUY.FORM.RESULT.QR.TEXT' | translate
               }}</label>
             </div>
 
-            <div class="loading-address-qr">
+            <div
+              class="loading-address-qr"
+              *ngIf="BuyGroup.controls['currency'].value !== 'card'"
+            >
               <button
                 *ngIf="
                   !buttonSubmit &&
@@ -348,7 +364,7 @@
                 class="ducatus-btn ducatus-btn-yellow"
                 style="min-width: 100%"
               >
-                {{ "PAGE.BUY.FORM.CONTINUE" | translate }}
+                {{ 'PAGE.BUY.FORM.CONTINUE' | translate }}
               </button>
               <button
                 [ngClass]="{ 'icon icon__loading': loadingCard }"
@@ -363,7 +379,7 @@
                 class="ducatus-btn ducatus-btn-yellow"
                 style="min-width: 100%; display: flex"
               >
-                <span *ngIf="!loadingCard">{{ "CONTINUE" | translate }}</span>
+                <span *ngIf="!loadingCard">{{ 'CONTINUE' | translate }}</span>
               </button>
               <button
                 [ngClass]="{ 'icon icon__loading': loadingCard }"
@@ -430,10 +446,10 @@
 
         <div class="buy-info-block hidden-mobile" *ngIf="!loadingData">
           <span class="buy-info-block-referral-title">{{
-            "PAGE.BUY.REFERRAL.TITLE" | translate
+            'PAGE.BUY.REFERRAL.TITLE' | translate
           }}</span>
           <span class="buy-info-block-referral-subtitle">{{
-            "PAGE.BUY.REFERRAL.SUBTITLE" | translate
+            'PAGE.BUY.REFERRAL.SUBTITLE' | translate
           }}</span>
 
           <div class="group group-input">
@@ -446,7 +462,7 @@
               (ngModelChange)="generateReferralLink()"
             />
             <span class="error-address-value" *ngIf="referralAddressError">{{
-              "PAGE.BUY.REFERRAL.ERROR" | translate
+              'PAGE.BUY.REFERRAL.ERROR' | translate
             }}</span>
           </div>
 
@@ -455,7 +471,7 @@
             class="group group-input"
           >
             <label style="margin-top: 30px">{{
-              "PAGE.BUY.REFERRAL.LINK" | translate
+              'PAGE.BUY.REFERRAL.LINK' | translate
             }}</label>
             <div class="buy-info-block-referral-link">
               <span class="buy-info-block-referral-link-text">{{
@@ -481,10 +497,10 @@
         <div class="hidden-desktop" *ngIf="!loadingData">
           <div class="buy-info-block" *ngIf="!loadingData">
             <span class="buy-info-block-referral-title">{{
-              "PAGE.BUY.REFERRAL.TITLE" | translate
+              'PAGE.BUY.REFERRAL.TITLE' | translate
             }}</span>
             <span class="buy-info-block-referral-subtitle">{{
-              "PAGE.BUY.REFERRAL.SUBTITLE" | translate
+              'PAGE.BUY.REFERRAL.SUBTITLE' | translate
             }}</span>
             <div class="group group-input">
               <input
@@ -496,7 +512,7 @@
                 (ngModelChange)="generateReferralLink()"
               />
               <span class="error-address-value" *ngIf="referralAddressError">{{
-                "PAGE.BUY.REFERRAL.ERROR" | translate
+                'PAGE.BUY.REFERRAL.ERROR' | translate
               }}</span>
             </div>
             <div
@@ -504,7 +520,7 @@
               class="group group-input"
             >
               <label style="margin-top: 30px">{{
-                "PAGE.BUY.REFERRAL.LINK" | translate
+                'PAGE.BUY.REFERRAL.LINK' | translate
               }}</label>
               <div class="buy-info-block-referral-link">
                 <span class="buy-info-block-referral-link-text">{{
@@ -538,7 +554,7 @@
           <!-- *ngIf="!lottery.filled_at && !lottery.ended" -->
           <div class="lottery-tickets-progress">
             <span class="lottery-tickets-progress-title"
-              >{{ "PAGE.BUY.LOTTERY.BLOCK.PROGRESS.TITLE" | translate }}
+              >{{ 'PAGE.BUY.LOTTERY.BLOCK.PROGRESS.TITLE' | translate }}
               <img
                 src="/assets/img/icons/lottery-rocket.svg"
                 height="25"
@@ -582,7 +598,7 @@
                 lottery.sent_duc_amount | number
               }}</span>
               <span class="lottery-tickets-item-text">{{
-                "PAGE.BUY.LOTTERY.BLOCK.TICKETS.TEXT" | translate
+                'PAGE.BUY.LOTTERY.BLOCK.TICKETS.TEXT' | translate
               }}</span>
             </div>
           </div>
@@ -618,7 +634,7 @@
         [disabled]="!modalAccept"
         class="ducatus-btn ducatus-btn-yellow"
       >
-        {{ "PAGE.BUY.MODAL.TERMS.BUTTON" | translate }}
+        {{ 'PAGE.BUY.MODAL.TERMS.BUTTON' | translate }}
       </button>
     </div>
   </div>
@@ -637,7 +653,7 @@
         (click)="modalInfo = false"
         class="ducatus-btn ducatus-btn-yellow"
       >
-        {{ "PAGE.BUY.MODAL.INFO.BUTTON" | translate }}
+        {{ 'PAGE.BUY.MODAL.INFO.BUTTON' | translate }}
       </button>
     </div>
   </div>
